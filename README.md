@@ -20,6 +20,6 @@ L'attaque par Deauth ou attaque par déni de service WI-FI fonctionne sur l'envo
 3. Selectionner votre AP (qui apparaîtra dans la ListBox). 
 4. Lancer l'attaque. 
 
-Vu de l'interface : 
+Vue de l'interface : 
 
 ![d](https://user-images.githubusercontent.com/89702597/215349724-845c068d-22cb-4cad-ab43-42cb8996f048.PNG)
