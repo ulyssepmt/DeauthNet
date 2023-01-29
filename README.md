@@ -13,7 +13,7 @@ L'attaque par Deauth ou attaque par déni de service WI-FI fonctionne sur l'envo
 2. Inssider afin pour réupéré un channel à cibler. Lien: https://www.metageek.com/downloads/inssider-win/
 3. L'image ("entete.php") dans le même répertoire que le script Python
 
-*Comment l'utiliser:*
+*Comment l'utilisez:*
 
 1. Choisissez avant tout une interface sur laquelle le mode monitor est activé. 
 2. Saississez un channel dans lequel se trouve l'AP à cibler. 
