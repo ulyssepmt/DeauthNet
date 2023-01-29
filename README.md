@@ -17,8 +17,8 @@ L'attaque par Deauth ou attaque par déni de service WI-FI fonctionne sur l'envo
 
 1. Choisissez avant tout une interface sur laquelle le mode monitor est activé. 
 2. Saississez un channel dans lequel se trouve l'AP à cibler. 
-3. Selectionner votre AP (qui apparaîtra dans la ListBox). 
-4. Lancer l'attaque. 
+3. Selectionnez votre AP (qui apparaîtra dans la ListBox). 
+4. Lancez l'attaque. 
 
 Vue de l'interface : 
 
