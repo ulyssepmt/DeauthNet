@@ -65,7 +65,7 @@ stop_event = threading.Event() # Multi-threading pour pouvoir lancer une boucle 
 def spammer():
     if not stop_event.is_set():
         deauth_attack()
-        root.after(1, spammer)
+        root.after(1, spammer) # délai ajouté 
 
 def onClick():
     global button_state
