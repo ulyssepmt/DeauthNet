@@ -5,7 +5,7 @@ Programme réalisé dans le cadre de la SAE304 pouvant déconnecté tous (ou pre
 
 L'attaque par Deauth ou attaque par déni de service WI-FI fonctionne sur l'envoi de paquets de désauthentification à un point d'accès (AP) après avoir récupéré le nom et l'adresse MAC de l'AP (récupéré grâce aux trames beacon). Ces paquets de désauthentification contiennent une demande de désauthentification pour les machines connectées au point d'accès et ce dernier répond en coupant les connexions avec les appareils affectés (ces dernier devront se reconnecter afin de rétablir la connexion. Il est donc possible de déconnecter les appareils pendant un certain temps ou indéfiniment (suivant les conditions de la boucle while, for, qui envoi les paquets). 
 
-/!\ Il s'agit juste d'un programme crée dans le cadre d'un projet informatique et je précise que cette attaque nécessite un accès physique ou à distance à l'appareil pour envoyer des paquets de désauthentification. Ellee ne permet donc pas de voler des informations ou de compromettre d'un quelqonque appareil connecté à l'AP. L'attaque Deauth peut simplement causer des perturbations pour les utilisateurs du réseau et même rendre le réseau inutilisable.
+/!\ Il s'agit juste d'un programme crée dans le cadre d'un projet informatique et je précise que cette attaque nécessite un accès physique ou à distance à l'appareil pour envoyer des paquets de désauthentification. Elle ne permet donc pas de voler des informations ou de compromettre la sécurité et les données d'un quelqonque appareil connecté à l'AP. L'attaque Deauth peut simplement causer des perturbations pour les utilisateurs du réseau et même rendre le réseau inutilisable.
 
 *Pré-requis:* 
 
