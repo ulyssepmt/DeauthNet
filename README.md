@@ -1,5 +1,5 @@
 # DeauthNet
-**FR**: Programme réalisé dans le cadre de la SAE304 pouvant déconnecter tous (ou presque) les appareils connectés à un point d'accès en utilisant le principe de l'attaque par déni de service dans la WI-FI.
+Programme écrit en Python réalisé dans le cadre de la SAE304 pouvant déconnecter tous (ou presque) les appareils connectés à un point d'accès en utilisant le principe de l'attaque par déni de service dans la WI-FI.
 
 **De quoi s'agit t-il ?**
 
